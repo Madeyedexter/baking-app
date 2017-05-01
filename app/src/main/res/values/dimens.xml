@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="app_bar_height">200dp</dimen>
+    <dimen name="item_width">300dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+    <dimen name="text_padding">16dp</dimen>
+    <dimen name="card_view_height">200dp</dimen>
+    <dimen name="recipe_image_height">220dp</dimen>
+    <dimen name="cardview_default_padding">8dp</dimen>
+    <dimen name="cardview_default_margin">8dp</dimen>
+</resources>

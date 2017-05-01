@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">baking-app</string>
+    <string name="title_step_list">Steps</string>
+    <string name="title_step_detail">Step Detail</string>
+    <string name="recipe_base_url" translatable="false">https://d17h27t6h515a5.cloudfront.net/topher/2017/March/58d1537b_baking/</string>
+    <string name="recipe_resource" translatable="false">baking.json</string>
+    <string name="key_recipe_list">recipe_list</string>
+    <string name="key_rv_recipe_state">rv_recipe_state</string>
+    <string name="servings_value">Servings: %1$s</string>
+    <string name="title_baking_time">Baking Time</string>
+    <string name="key_recipe">recipe</string>
+    <string name="val_ig_measure_quantity" translatable="false">$1%s - $2%s</string>
+
+
+</resources>
