@@ -10,6 +10,7 @@
     <string name="title_baking_time">Baking Time</string>
     <string name="key_recipe">recipe</string>
     <string name="val_ig_measure_quantity" translatable="false">$1%s - $2%s</string>
+    <string name="key_view_type">view_type</string>
 
 
 </resources>

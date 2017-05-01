@@ -1,9 +1,7 @@
 package app.baking_app;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.NavUtils;
@@ -11,31 +9,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
 
 import app.baking_app.adapters.IngredientStepAdapter;
-import app.baking_app.dummy.DummyContent;
-import app.baking_app.models.Ingredient;
 import app.baking_app.models.Recipe;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
-import java.util.List;
 
 /**
  * An activity representing a list of Steps. This activity
  * has different presentations for handset and tablet-size devices. On
  * handsets, the activity presents a list of items, which when touched,
- * lead to a {@link StepDetailActivity} representing
+ * lead to a {@link IngredientStepDetailActivity} representing
  * item details. On tablets, the activity presents the list of items and
  * item details side-by-side using two vertical panes.
  */
@@ -104,21 +91,21 @@ public class StepListActivity extends AppCompatActivity implements IngredientSte
 
     @Override
     public void onIngredientStepClicked(int viewType, int position) {
-        Fragment fragment = null;
-        if(viewType==IngredientStepAdapter.ITEM_TYPE_INGREDIENTS){
-            fragment = IngredientsDetailFragment.newInstance(mRecipe.getIngredients());
-        }
-        else{
-            fragment = StepDetailFragment.newInstance(mRecipe.getSteps().get(position));
-        }
-
         if(sTwoPane){
+            Fragment fragment = null;
+            if(viewType==IngredientStepAdapter.ITEM_TYPE_INGREDIENTS){
+                fragment = IngredientsDetailFragment.newInstance(mRecipe.getIngredients());
+            }
+            else{
+                fragment = StepDetailFragment.newInstance(mRecipe.getSteps().get(position));
+            }
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.step_detail_container,fragment).commit();
-            Log.d(TAG, "Added Fragment: "+fragment);
         }
         else{
-
+            Intent intent = new Intent(this, IngredientStepDetailActivity.class);
+            intent.putExtra(getString(R.string.key_recipe),mRecipe);
+            startActivity(intent);
         }
     }
 }

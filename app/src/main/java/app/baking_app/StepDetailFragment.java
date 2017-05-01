@@ -7,15 +7,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import app.baking_app.dummy.DummyContent;
 import app.baking_app.models.Step;
 
 /**
  * A fragment representing a single Step detail screen.
  * This fragment is either contained in a {@link StepListActivity}
- * in two-pane mode (on tablets) or a {@link StepDetailActivity}
+ * in two-pane mode (on tablets) or a {@link IngredientStepDetailActivity}
  * on handsets.
  */
 public class StepDetailFragment extends Fragment {
