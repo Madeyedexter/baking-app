@@ -122,7 +122,7 @@ public class StepDetailFragment extends Fragment implements View.OnClickListener
             Activity activity = this.getActivity();
             CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
             if (appBarLayout != null) {
-                appBarLayout.setTitle("Step " + mStep.getId());
+                appBarLayout.setTitle(String.format(getString(R.string.step_title_label),mStep.getId()));
             }
         }
         initializeMediaSession();
@@ -205,7 +205,7 @@ public class StepDetailFragment extends Fragment implements View.OnClickListener
             LoadControl loadControl = new DefaultLoadControl();
             mExoPlayer = ExoPlayerFactory.newSimpleInstance(getContext(), trackSelector, loadControl);
             simpleExoPlayerView.setPlayer(mExoPlayer);
-            String userAgent = Util.getUserAgent(getContext(),"Recipe Step");
+            String userAgent = Util.getUserAgent(getContext(),getString(R.string.exo_user_agent_string));
             MediaSource mediaSource = new ExtractorMediaSource(uri,new DefaultDataSourceFactory(getContext(),userAgent), new DefaultExtractorsFactory(), null, null);
             mExoPlayer.prepare(mediaSource);
             mExoPlayer.setPlayWhenReady(true);
