@@ -36,7 +36,7 @@
             android:layout_marginEnd="@dimen/margin_detail_views"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
             tools:text="Melt the butter and bittersweet chocolate together in a microwave or a double boiler. If microwaving, heat for 30 seconds at a time, removing bowl and stirring ingredients in between."
             />
         <android.support.constraint.ConstraintLayout
