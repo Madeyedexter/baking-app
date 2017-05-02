@@ -1,16 +1,49 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="app.baking_app.IngredientsDetailFragment">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:clipToPadding="false"
+        >
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_ingredients"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/fab_margin"
+        android:layout_marginLeft="@dimen/margin_detail_views"
+        android:layout_marginRight="@dimen/margin_detail_views"
+        android:layout_marginTop="@dimen/margin_detail_views"
         app:layoutManager="LinearLayoutManager"
-        >
+        android:nestedScrollingEnabled="false"
+        android:elevation="2dp"
+        android:outlineProvider="bounds"
+        android:layout_marginBottom="16dp"
 
-    </android.support.v7.widget.RecyclerView>
-</ScrollView>
+        />
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            >
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab_right"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginRight="@dimen/margin_detail_views"
+                android:layout_marginEnd="@dimen/margin_detail_views"
+                android:layout_marginBottom="@dimen/margin_detail_views"
+                android:src="@drawable/ic_keyboard_arrow_right_black_24dp"
+                app:pressedTranslationZ="2dp"
+                android:clickable="true"
+                android:background="?android:selectableItemBackground"
+                app:layout_constraintBottom_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="parent"
+                app:layout_constraintRight_toLeftOf="parent" />
+        </android.support.constraint.ConstraintLayout>
+
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

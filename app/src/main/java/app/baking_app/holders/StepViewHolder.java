@@ -27,10 +27,6 @@ public class StepViewHolder extends RecyclerView.ViewHolder {
     public void bindData(Step step){
         stepNumber.setText(step.getId());
         mContentView.setText(step.getShortDescription());
-
-        if(IngredientStepAdapter.SELECTED_ITEM_POSITION==Integer.parseInt(itemView.getTag().toString())){
-            itemView.setBackgroundColor(ContextCompat.getColor(itemView.getContext(), R.color.colorAccent));
-        }
     }
 
     @Override

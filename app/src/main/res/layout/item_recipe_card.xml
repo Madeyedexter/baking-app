@@ -5,7 +5,6 @@
     android:layout_width="match_parent" android:layout_height="wrap_content"
     app:cardElevation="@dimen/cardview_default_elevation"
     app:cardCornerRadius="@dimen/cardview_default_radius"
-    app:contentPadding="@dimen/cardview_default_padding"
     android:layout_margin="@dimen/cardview_default_margin"
     android:foreground="?android:selectableItemBackground"
     android:clickable="true"
@@ -43,6 +42,7 @@
             android:lines="1"
             android:maxLines="1"
             android:paddingLeft="@dimen/text_padding"
+            android:paddingBottom="@dimen/text_padding"
             android:text="@string/servings_value"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             tools:text="Servings: %1$s" />

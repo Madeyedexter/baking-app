@@ -9,4 +9,5 @@
     <dimen name="recipe_image_height">220dp</dimen>
     <dimen name="cardview_default_padding">8dp</dimen>
     <dimen name="cardview_default_margin">8dp</dimen>
+    <dimen name="margin_detail_views">16dp</dimen>
 </resources>

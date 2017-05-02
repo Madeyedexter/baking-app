@@ -2,6 +2,8 @@ package app.baking_app;
 
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,6 +13,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import app.baking_app.adapters.IngredientAdapter;
+import app.baking_app.listeners.FabClickListener;
 import app.baking_app.models.Ingredient;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -21,7 +24,7 @@ import butterknife.ButterKnife;
  * Use the {@link IngredientsDetailFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class IngredientsDetailFragment extends Fragment {
+public class IngredientsDetailFragment extends Fragment implements View.OnClickListener{
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_INGREDIENTS_LIST = "param1";
 
@@ -29,6 +32,19 @@ public class IngredientsDetailFragment extends Fragment {
 
     @BindView(R.id.rv_ingredients)
     RecyclerView recyclerViewIngredients;
+
+    @BindView(R.id.fab_right)
+    FloatingActionButton fabNext;
+
+    public FabClickListener getFabClickListener() {
+        return fabClickListener;
+    }
+
+    public void setFabClickListener(FabClickListener fabClickListener) {
+        this.fabClickListener = fabClickListener;
+    }
+
+    private FabClickListener fabClickListener;
 
 
 
@@ -68,6 +84,7 @@ public class IngredientsDetailFragment extends Fragment {
         ButterKnife.bind(this,rootView);
 
         setupRecyclerViewIngredients();
+        fabNext.setOnClickListener(this);
 
 
         return rootView;
@@ -77,4 +94,15 @@ public class IngredientsDetailFragment extends Fragment {
         recyclerViewIngredients.setAdapter(new IngredientAdapter(ingredients));
     }
 
+    @Override
+    public void onClick(View v) {
+        fabClickListener.onFabClicked(FabClickListener.FAB_DIR.NEXT);
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        if(getActivity() instanceof FabClickListener)
+        fabClickListener = (FabClickListener) getActivity();
+    }
 }

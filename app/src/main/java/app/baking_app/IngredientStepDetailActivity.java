@@ -12,6 +12,7 @@ import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
 
 import app.baking_app.adapters.IngredientStepAdapter;
+import app.baking_app.listeners.FabClickListener;
 import app.baking_app.models.Recipe;
 
 /**
@@ -20,7 +21,12 @@ import app.baking_app.models.Recipe;
  * item details are presented side-by-side with a list of items
  * in a {@link StepListActivity}.
  */
-public class IngredientStepDetailActivity extends AppCompatActivity {
+public class IngredientStepDetailActivity extends AppCompatActivity implements FabClickListener {
+
+    //The current position of the steps.
+    private int currentPosition;
+    //The recipe for which we are showing the steps
+    private Recipe recipe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,19 +54,36 @@ public class IngredientStepDetailActivity extends AppCompatActivity {
         if (savedInstanceState == null && intent!=null && intent.hasExtra(getString(R.string.key_recipe))) {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
-            Recipe recipe = intent.getParcelableExtra(getString(R.string.key_recipe));
-            Fragment fragment = null;
-            if(IngredientStepAdapter.SELECTED_ITEM_POSITION == 0){
-             // we need to create a IngredientDetailFragment
-                fragment = IngredientsDetailFragment.newInstance(recipe.getIngredients());
-            }
-            else{
-                fragment = StepDetailFragment.newInstance(recipe.getSteps().get(IngredientStepAdapter.SELECTED_ITEM_POSITION-1));
-            }
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.step_detail_container, fragment)
-                    .commit();
+            recipe = intent.getParcelableExtra(getString(R.string.key_recipe));
+            int position = intent.getIntExtra(getString(R.string.key_selected_position),0);
+            currentPosition=position;
         }
+        else{
+            currentPosition = savedInstanceState.getInt(getString(R.string.key_current_position));
+            recipe = savedInstanceState.getParcelable(getString(R.string.key_recipe));
+        }
+        setFragment();
+    }
+
+    private void setFragment() {
+        Fragment fragment = null;
+        if(currentPosition == 0){
+            // we need to create a IngredientDetailFragment
+            fragment = IngredientsDetailFragment.newInstance(recipe.getIngredients());
+        }
+        else{
+            fragment = StepDetailFragment.newInstance(recipe.getSteps().get(currentPosition-1), recipe.getSteps().size()==currentPosition);
+        }
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.step_detail_container, fragment)
+                .commit();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putInt(getString(R.string.key_current_position),currentPosition);
+        outState.putParcelable(getString(R.string.key_recipe),recipe);
+        super.onSaveInstanceState(outState);
     }
 
     @Override
@@ -77,5 +100,16 @@ public class IngredientStepDetailActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onFabClicked(FAB_DIR dir) {
+        switch (dir){
+            case PREVIOUS: currentPosition -=1;
+                break;
+            case NEXT: currentPosition +=1;
+                break;
+        }
+        setFragment();
     }
 }

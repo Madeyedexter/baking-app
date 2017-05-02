@@ -9,8 +9,11 @@
     <string name="servings_value">Servings: %1$s</string>
     <string name="title_baking_time">Baking Time</string>
     <string name="key_recipe">recipe</string>
-    <string name="val_ig_measure_quantity" translatable="false">$1%s - $2%s</string>
+    <string name="val_ig_measure_quantity" translatable="false">%1$s - %2$s</string>
     <string name="key_view_type">view_type</string>
+    <string name="key_rv_lo_state">rv_lo_state</string>
+    <string name="key_current_position">current_position</string>
+    <string name="key_selected_position">selected_position</string>
 
 
 </resources>

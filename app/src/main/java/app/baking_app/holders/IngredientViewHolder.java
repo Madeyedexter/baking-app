@@ -15,10 +15,4 @@ public class IngredientViewHolder extends RecyclerView.ViewHolder {
     public IngredientViewHolder(View itemView) {
         super(itemView);
     }
-
-    public void bindData(){
-        if(IngredientStepAdapter.SELECTED_ITEM_POSITION==Integer.parseInt(itemView.getTag().toString())){
-            itemView.setBackgroundColor(ContextCompat.getColor(itemView.getContext(), R.color.colorAccent));
-        }
-    }
 }

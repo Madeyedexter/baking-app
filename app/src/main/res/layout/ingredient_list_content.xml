@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="80dp"
-    android:background="?android:selectableItemBackground"
-
+    android:background="@drawable/listitem_state_selector"
     android:clickable="true"
     >
     <ImageView
