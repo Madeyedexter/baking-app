@@ -1,6 +1,8 @@
 package app.baking_app.adapters;
 
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,7 +74,13 @@ public class IngredientStepAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         @Override
         public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
             holder.itemView.setTag(position);
-            holder.itemView.setSelected(position==selectedPosition);
+            if(position==selectedPosition)
+            holder.itemView.setBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(),R.color.colorAccent));
+            else {
+                TypedValue outValue = new TypedValue();
+                holder.itemView.getContext().getTheme().resolveAttribute(android.R.attr.selectableItemBackground, outValue, true);
+                holder.itemView.setBackgroundResource(outValue.resourceId);
+            }
             switch (getItemViewType(position)){
                 case ITEM_TYPE_INGREDIENTS: break;
                 default: ((StepViewHolder)holder).bindData(steps.get(position-1));

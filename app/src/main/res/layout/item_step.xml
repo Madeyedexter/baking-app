@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:orientation="horizontal"
     android:layout_height="80dp"
-    android:background="@drawable/listitem_state_selector"
+    android:background="?android:selectableItemBackground"
     android:clickable="true"
     >
     <TextView

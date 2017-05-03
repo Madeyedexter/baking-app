@@ -16,9 +16,8 @@
     <string name="key_selected_position">selected_position</string>
     <string name="step_title_label">Step %1$s</string>
     <string name="exo_user_agent_string">Recipe Step</string>
-    <string name="appwidget_text">EXAMPLE</string>
-    <string name="configure">Configure</string>
+    <string name="configure">Choose a recipe below to show ingredients for in the widget.</string>
     <string name="add_widget">Add widget</string>
-
-
+    <string name="appwidget_recipe_text">Tap to select a recipe to show ingredients for</string>
+    <string name="appwidget_ingredient_text_label">Showing Ingredients for: %1$s</string>
 </resources>

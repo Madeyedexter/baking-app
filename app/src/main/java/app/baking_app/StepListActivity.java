@@ -121,11 +121,13 @@ public class StepListActivity extends AppCompatActivity implements IngredientSte
             FragmentManager fragmentManager = getSupportFragmentManager();
             if(viewType==IngredientStepAdapter.ITEM_TYPE_INGREDIENTS){
                 IngredientsDetailFragment fragment = IngredientsDetailFragment.newInstance(mRecipe.getIngredients());
-                fragmentManager.beginTransaction().replace(R.id.step_detail_container,fragment).commit();
+                fragmentManager.beginTransaction()
+                        .replace(R.id.step_detail_container,fragment).commit();
             }
             else{
                 StepDetailFragment fragment = StepDetailFragment.newInstance(mRecipe.getSteps().get(newPosition-1), mRecipe.getSteps().size()-1==newPosition-1);
-                fragmentManager.beginTransaction().replace(R.id.step_detail_container,fragment).commit();
+                fragmentManager.beginTransaction()
+                        .replace(R.id.step_detail_container,fragment).commit();
             }
         }
         else{

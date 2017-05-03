@@ -1,9 +1,13 @@
 package app.baking_app;
 
+import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
+import android.content.Intent;
 import android.widget.RemoteViews;
+
+import app.baking_app.models.Ingredient;
 
 /**
  * Implementation of App Widget functionality.
@@ -13,11 +17,11 @@ public class RecipeStepsWidget extends AppWidgetProvider {
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
-
-        CharSequence widgetText = RecipeStepsWidgetConfigureActivity.loadTitlePref(context, appWidgetId);
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.recipe_steps_widget);
-        views.setTextViewText(R.id.appwidget_text, widgetText);
+        Intent intent = new Intent(context, StepListActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context,0,intent,0);
+        views.setOnClickPendingIntent(R.id.appwidget_default_image,pendingIntent);
 
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);

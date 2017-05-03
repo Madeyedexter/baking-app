@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/tv_recipe_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lines="1"
+        android:maxLines="1"
+        android:padding="@dimen/padding_margin_8dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        tools:text="Nutella Pie" />
+
+    <TextView
+        android:id="@+id/tv_recipe_servings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lines="1"
+        android:maxLines="1"
+        android:paddingLeft="@dimen/padding_margin_8dp"
+        android:paddingBottom="@dimen/padding_margin_8dp"
+        android:text="@string/servings_value"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        tools:text="Servings: %1$s" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+</LinearLayout>

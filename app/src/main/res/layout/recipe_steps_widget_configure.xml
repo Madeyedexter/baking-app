@@ -1,27 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:layout_marginLeft="@dimen/margin_detail_views"
+    android:layout_marginRight="@dimen/margin_detail_views"
+    android:padding="16dp"
+    android:clipToPadding="false"
+    >
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:text="@string/configure" />
-
-    <EditText
-        android:id="@+id/appwidget_text"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_recipe"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="text" />
-
-    <Button
-        android:id="@+id/add_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/add_widget" />
-
+        android:outlineProvider="bounds"
+        android:elevation="1dp"
+        android:nestedScrollingEnabled="false"
+        app:layoutManager="LinearLayoutManager"
+        >
+    </android.support.v7.widget.RecyclerView>
 </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

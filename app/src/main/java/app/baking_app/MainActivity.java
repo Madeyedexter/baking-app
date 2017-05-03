@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Car
         recipes.enqueue(new Callback<ArrayList<Recipe>>() {
             @Override
             public void onResponse(Call<ArrayList<Recipe>> call, Response<ArrayList<Recipe>> response) {
-                recipeAdapter.setMovies(response.body());
+                recipeAdapter.setRecipes(response.body());
                 recipeAdapter.setLoading(false);
             }
 

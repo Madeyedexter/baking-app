@@ -1,14 +1,10 @@
 package app.baking_app.adapters;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -20,11 +16,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * Created by Madeyedexter on 30-04-2017.
+ * Created by Madeyedexter on 03-05-2017.
  */
 
-public class RecipeAdapter extends RecyclerView.Adapter {
-    private static final String TAG = RecipeAdapter.class.getSimpleName();
+public class RecipeWidgetAdapter extends RecyclerView.Adapter {
+    private static final String TAG = RecipeWidgetAdapter.class.getSimpleName();
 
     private boolean loading=false;
 
@@ -65,13 +61,9 @@ public class RecipeAdapter extends RecyclerView.Adapter {
 
     private ArrayList<Recipe> recipes;
 
-    public interface CardClickListener{
-        void onThumbClicked(Recipe recipe);
-    }
+    public RecipeAdapter.CardClickListener clickListener;
 
-    public CardClickListener clickListener;
-
-    public RecipeAdapter(CardClickListener clickListener){
+    public RecipeWidgetAdapter(RecipeAdapter.CardClickListener clickListener){
         this.clickListener=clickListener;
     }
 
@@ -80,7 +72,7 @@ public class RecipeAdapter extends RecyclerView.Adapter {
         switch(viewType){
             case ITEM_TYPE_DATA: //default item
                 //Log.d(TAG,"Created MovieHolder");
-                return new RecipeCardHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recipe_card,parent,false));
+                return new RecipeWidgetAdapter.RecipeCardHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recipe_configuration_widget_list,parent,false));
             case ITEM_TYPE_LOADING: //Loading indicator
                 return new LoadingHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_loading,parent,false));
             default: //ITEM_TYPE_ENDED|ITEM_TYPE_ERROR|ITEM_TYPE_EMPTY
@@ -91,7 +83,7 @@ public class RecipeAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         switch (getItemViewType(position)){
-            case ITEM_TYPE_DATA: ((RecipeCardHolder)holder).bindData(position);
+            case ITEM_TYPE_DATA: ((RecipeWidgetAdapter.RecipeCardHolder)holder).bindData(position);
                 break;
             case ITEM_TYPE_LOADING: break;
             //all others
@@ -114,9 +106,6 @@ public class RecipeAdapter extends RecyclerView.Adapter {
 
 
     public class RecipeCardHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-
-        @BindView(R.id.iv_recipe_image)
-        ImageView iv_thumb;
         @BindView(R.id.tv_recipe_title)
         TextView tvTitle;
         @BindView(R.id.tv_recipe_servings)
@@ -125,12 +114,11 @@ public class RecipeAdapter extends RecyclerView.Adapter {
         public RecipeCardHolder(View rootView){
             super(rootView);
             ButterKnife.bind(this,rootView);
-            rootView.setOnClickListener(RecipeCardHolder.this);
+            rootView.setOnClickListener(RecipeWidgetAdapter.RecipeCardHolder.this);
         }
 
         public void bindData(int position){
             Recipe recipe = recipes.get(position);
-            Picasso.with(iv_thumb.getContext()).load(recipe.getImage()).placeholder(R.drawable.placeholder_category).error(R.drawable.placeholder_category).into(iv_thumb);
             tvTitle.setText(recipe.getName());
             tvServings.setText(String.format(tvServings.getContext().getString(R.string.servings_value),String.valueOf(recipe.getServings())));
 
