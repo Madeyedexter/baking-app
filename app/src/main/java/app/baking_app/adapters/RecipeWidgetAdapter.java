@@ -1,5 +1,6 @@
 package app.baking_app.adapters;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -82,16 +83,17 @@ public class RecipeWidgetAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        Context context = holder.itemView.getContext();
         switch (getItemViewType(position)){
             case ITEM_TYPE_DATA: ((RecipeWidgetAdapter.RecipeCardHolder)holder).bindData(position);
                 break;
             case ITEM_TYPE_LOADING: break;
             //all others
-            case ITEM_TYPE_EMPTY: ((TextHolder)holder).setLightEmptyMessage("No Movies to show here.");
+            case ITEM_TYPE_EMPTY: ((TextHolder)holder).setLightEmptyMessage(context.getString(R.string.message_no_data));
                 break;
-            case ITEM_TYPE_ERROR: ((TextHolder)holder).setLightMessage("An error occurred while fetching data");
+            case ITEM_TYPE_ERROR: ((TextHolder)holder).setLightMessage(context.getString(R.string.message_error));
                 break;
-            case ITEM_TYPE_ENDED: ((TextHolder)holder).setLightMessage("End of Feed.");
+            case ITEM_TYPE_ENDED: ((TextHolder)holder).setLightMessage(context.getString(R.string.message_eod));
                 break;
             case ITEM_TYPE_IDLE: ((TextHolder)holder).tvMessage.setVisibility(View.GONE);
                 break;

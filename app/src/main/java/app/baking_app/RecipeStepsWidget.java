@@ -26,7 +26,6 @@ public class RecipeStepsWidget extends AppWidgetProvider {
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
-        Log.d(TAG, "Entered updateApp Widget");
         SharedPreferences sharedPreferences = context.getSharedPreferences(context.getString(R.string.name_sp_widget),0);
         String jsonString = sharedPreferences.getString(String.valueOf(appWidgetId),null);
         Gson gson = new Gson();
@@ -57,7 +56,6 @@ public class RecipeStepsWidget extends AppWidgetProvider {
         views.setRemoteAdapter(R.id.lv_ingredients,intent);
         Log.d(TAG, recipe.toString());
         appWidgetManager.updateAppWidget(appWidgetId,views);
-        Log.d(TAG, "Exiting update App widget");
     }
 
     @Override
@@ -83,7 +81,6 @@ public class RecipeStepsWidget extends AppWidgetProvider {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        Log.d(TAG,"BroadCast received with action: "+intent.getAction());
         if(intent.getAction().equals(AppWidgetManager.ACTION_APPWIDGET_UPDATE)){
             AppWidgetManager gm = AppWidgetManager.getInstance(context);
             int id = intent.getIntExtra(context.getString(R.string.key_widget_id),0);

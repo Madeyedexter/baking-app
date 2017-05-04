@@ -9,14 +9,14 @@
     android:orientation="vertical"
     android:layout_marginLeft="@dimen/margin_detail_views"
     android:layout_marginRight="@dimen/margin_detail_views"
-    android:padding="16dp"
+    android:padding="@dimen/text_padding"
     android:clipToPadding="false"
     >
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="@dimen/padding_margin_8dp"
         android:text="@string/configure" />
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_recipe"

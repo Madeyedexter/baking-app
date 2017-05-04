@@ -7,8 +7,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:orientation="vertical"
-        android:layout_height="match_parent"
-        android:padding="16dp">
+        android:layout_height="match_parent">
         <com.google.android.exoplayer2.ui.SimpleExoPlayerView
             android:id="@+id/exo_video"
             android:layout_width="match_parent"
@@ -23,13 +22,13 @@
             android:layout_marginStart="@dimen/margin_detail_views"
             android:layout_marginRight="@dimen/margin_detail_views"
             android:layout_marginEnd="@dimen/margin_detail_views"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/text_margin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             />
         <TextView
             android:id="@+id/tv_description"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/text_margin"
             android:layout_marginLeft="@dimen/margin_detail_views"
             android:layout_marginStart="@dimen/margin_detail_views"
             android:layout_marginRight="@dimen/margin_detail_views"
@@ -46,14 +45,12 @@
             >
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/fab_left"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="@dimen/fab_size"
+                android:layout_height="@dimen/fab_size"
                 android:layout_marginLeft="@dimen/margin_detail_views"
                 android:layout_marginStart="@dimen/margin_detail_views"
-                android:layout_marginBottom="32dp"
-                app:elevation="6dp"
+                android:layout_marginBottom="@dimen/margin_padding_32dp"
                 android:src="@drawable/ic_keyboard_arrow_left_black_24dp"
-                app:pressedTranslationZ="2dp"
                 android:clickable="true"
                 app:layout_constraintBottom_toTopOf="parent"
                 app:layout_constraintLeft_toRightOf="parent"
@@ -61,14 +58,12 @@
 
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/fab_right"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="@dimen/fab_size"
+                android:layout_height="@dimen/fab_size"
                 android:layout_marginRight="@dimen/margin_detail_views"
                 android:layout_marginEnd="@dimen/margin_detail_views"
-                android:layout_marginBottom="32dp"
-                android:elevation="6dp"
+                android:layout_marginBottom="@dimen/margin_padding_32dp"
                 android:src="@drawable/ic_keyboard_arrow_right_black_24dp"
-                app:pressedTranslationZ="2dp"
                 android:clickable="true"
                 app:layout_constraintBottom_toTopOf="parent"
                 app:layout_constraintTop_toBottomOf="parent"

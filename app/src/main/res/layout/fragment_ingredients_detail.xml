@@ -28,9 +28,9 @@
         android:layout_marginRight="@dimen/margin_detail_views"
         app:layoutManager="LinearLayoutManager"
         android:nestedScrollingEnabled="false"
-        android:elevation="1dp"
+        android:elevation="@dimen/elevation_1dp"
         android:outlineProvider="bounds"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="@dimen/text_margin"
 
         />
         <android.support.constraint.ConstraintLayout
@@ -40,8 +40,8 @@
             >
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/fab_right"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="@dimen/fab_size"
+                android:layout_height="@dimen/fab_size"
                 android:layout_marginRight="@dimen/margin_detail_views"
                 android:layout_marginEnd="@dimen/margin_detail_views"
                 android:layout_marginBottom="@dimen/margin_detail_views"

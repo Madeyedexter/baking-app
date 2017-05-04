@@ -29,30 +29,15 @@ public class IngredientsDetailFragment extends Fragment implements View.OnClickL
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_INGREDIENTS_LIST = "param1";
     private static final String ARG_RECIPE_NAME = "param2";
-
-    private ArrayList<Ingredient> ingredients;
-    private String recipeName;
-
     @BindView(R.id.rv_ingredients)
     RecyclerView recyclerViewIngredients;
-
     @BindView(R.id.fab_right)
     FloatingActionButton fabNext;
-
     @BindView(R.id.tv_ingredients_label)
     TextView tvIngredientsLabel;
-
-    public FabClickListener getFabClickListener() {
-        return fabClickListener;
-    }
-
-    public void setFabClickListener(FabClickListener fabClickListener) {
-        this.fabClickListener = fabClickListener;
-    }
-
+    private ArrayList<Ingredient> ingredients;
+    private String recipeName;
     private FabClickListener fabClickListener;
-
-
 
     public IngredientsDetailFragment() {
         // Required empty public constructor
@@ -74,12 +59,22 @@ public class IngredientsDetailFragment extends Fragment implements View.OnClickL
         return fragment;
     }
 
+    public FabClickListener getFabClickListener() {
+        return fabClickListener;
+    }
+
+    public void setFabClickListener(FabClickListener fabClickListener) {
+        this.fabClickListener = fabClickListener;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             this.ingredients = getArguments().getParcelableArrayList(ARG_INGREDIENTS_LIST);
             this.recipeName = getArguments().getString(ARG_RECIPE_NAME);
+
+            getActivity().setTitle(getString(R.string.ingredients));
         }
     }
 

@@ -18,4 +18,13 @@ http://developer.android.com/guide/topics/appwidgets/index.html#CreatingLayout
     <dimen name="widget_margin">8dp</dimen>
     <dimen name="padding_margin_8dp">8dp</dimen>
     <dimen name="widget_min_dimen">220dp</dimen>
+    <dimen name="elevation_1dp">1dp</dimen>
+    <dimen name="fab_size">50dp</dimen>
+    <dimen name="margin_padding_32dp">32dp</dimen>
+    <dimen name="iv_icon_size">32dp</dimen>
+    <dimen name="step_list_card_size">80dp</dimen>
+    <dimen name="sep_size">1dp</dimen>
+    <dimen name="pb_size">40dp</dimen>
+    <dimen name="text_size_16sp">16sp</dimen>
+    <dimen name="iv_widget_height">100dp</dimen>
 </resources>

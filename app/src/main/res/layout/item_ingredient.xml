@@ -24,7 +24,7 @@
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"/>
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/sep_size"
         android:layout_marginTop="@dimen/text_margin"
         android:background="@android:color/darker_gray"/>
 </LinearLayout>

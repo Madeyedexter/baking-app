@@ -26,7 +26,6 @@ public class ListWidgetService extends RemoteViewsService {
     private static final String TAG = ListWidgetService.class.getSimpleName();
     @Override
     public RemoteViewsFactory onGetViewFactory(Intent intent) {
-        Log.d(TAG, "Inside Service onGetViewFactory");
         return new ListRemoteViewsFactory(this.getApplicationContext(), intent);
     }
 

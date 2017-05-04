@@ -23,4 +23,8 @@
     <string name="name_sp_widget">sp_widget</string>
     <string name="key_widget_id">widget_id</string>
     <string name="label_ingredients_list">Get ready with the following ingredients for %1$s</string>
+    <string name="message_no_data">No data to show here.</string>
+    <string name="message_error">An error occurred while fetching data</string>
+    <string name="message_eod">End of data.</string>
+    <string name="ingredients">Ingredients</string>
 </resources>

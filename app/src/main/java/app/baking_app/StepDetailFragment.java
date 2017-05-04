@@ -120,10 +120,7 @@ public class StepDetailFragment extends Fragment implements View.OnClickListener
             mStep = getArguments().getParcelable(ARG_ITEM_ID);
             mIsLast = getArguments().getBoolean(ARG_IS_LAST);
             Activity activity = this.getActivity();
-            CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
-            if (appBarLayout != null) {
-                appBarLayout.setTitle(String.format(getString(R.string.step_title_label),mStep.getId()));
-            }
+            activity.setTitle(String.format(getString(R.string.step_title_label),String.valueOf(mStep.getId())));
         }
         initializeMediaSession();
     }

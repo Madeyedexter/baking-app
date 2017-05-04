@@ -8,14 +8,14 @@
     <ImageView
         android:id="@+id/iv_appwidget"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="@dimen/iv_widget_height"
         android:layout_centerHorizontal="true"
         android:contentDescription="@string/appwidget_recipe_text"
         android:src="@drawable/ingredients_colored_512"
         android:scaleType="fitCenter"
         android:layout_marginLeft="@dimen/padding_margin_8dp"
         android:layout_marginRight="@dimen/padding_margin_8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/padding_margin_8dp"
         android:layout_gravity="center"/>
     <TextView
         android:id="@+id/tv_ingredients_label"
