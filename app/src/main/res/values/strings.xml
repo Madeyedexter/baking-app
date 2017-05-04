@@ -20,4 +20,6 @@
     <string name="add_widget">Add widget</string>
     <string name="appwidget_recipe_text">Tap to select a recipe to show ingredients for</string>
     <string name="appwidget_ingredient_text_label">Showing Ingredients for: %1$s</string>
+    <string name="name_sp_widget">sp_widget</string>
+    <string name="key_widget_id">widget_id</string>
 </resources>

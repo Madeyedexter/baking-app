@@ -1,20 +1,19 @@
 package app.baking_app;
 
-import android.app.Activity;
+import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.View;
-import android.widget.EditText;
 import android.widget.RemoteViews;
 import android.widget.Toast;
+
+import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -36,9 +35,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RecipeStepsWidgetConfigureActivity extends AppCompatActivity implements RecipeAdapter.CardClickListener {
 
     private static final String TAG = RecipeStepsWidgetConfigureActivity.class.getSimpleName();
-
-    private static final String PREFS_NAME = "app.baking_app.RecipeStepsWidget";
-    private static final String PREF_PREFIX_KEY = "appwidget_";
     int mAppWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
 
     @BindView(R.id.rv_recipe)
@@ -49,16 +45,9 @@ public class RecipeStepsWidgetConfigureActivity extends AppCompatActivity implem
         super();
     }
 
-    // Write the prefix to the SharedPreferences object for this widget
-    static void saveTitlePref(Context context, int appWidgetId, String text) {
-        SharedPreferences.Editor prefs = context.getSharedPreferences(PREFS_NAME, 0).edit();
-        prefs.putString(PREF_PREFIX_KEY + appWidgetId, text);
-        prefs.apply();
-    }
-
-    static void deleteTitlePref(Context context, int appWidgetId) {
-        SharedPreferences.Editor prefs = context.getSharedPreferences(PREFS_NAME, 0).edit();
-        prefs.remove(PREF_PREFIX_KEY + appWidgetId);
+    static void deletePref(Context context, int appWidgetId) {
+        SharedPreferences.Editor prefs = context.getApplicationContext().getSharedPreferences(context.getString(R.string.name_sp_widget), 0).edit();
+        prefs.remove(String.valueOf(appWidgetId));
         prefs.apply();
     }
 
@@ -94,33 +83,23 @@ public class RecipeStepsWidgetConfigureActivity extends AppCompatActivity implem
 
     @Override
     public void onThumbClicked(Recipe recipe) {
-        Toast.makeText(getApplicationContext(),recipe.getName(),Toast.LENGTH_SHORT).show();
-        RemoteViews views = new RemoteViews(getPackageName(),
-                R.layout.recipe_steps_widget);
-        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
-        views.setTextViewText(R.id.tv_ingredients_label, String.format(getString(R.string.appwidget_ingredient_text_label),recipe.getName()));
-        //views.setTextViewText(R.id.tv_ingredients, String.format(getString(R.string.appwidget_ingredient_text_label),recipe.getName()));
-        Intent intent = new Intent(this, ListWidgetService.class);
-        // Add the app widget ID to the intent extras.
-        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, mAppWidgetId);
-        Log.d(TAG,"Before putting recipe");
-        //intent.putExtra(getString(R.string.key_recipe), recipe);
-        Log.d(TAG,"After putting recipe");
-        intent.setData(Uri.parse(intent.toUri(Intent.URI_INTENT_SCHEME)));
-        // Instantiate the RemoteViews object for the app widget layout.
-        // Set up the RemoteViews object to use a RemoteViews adapter.
-        // This adapter connects
-        // to a RemoteViewsService  through the specified intent.
-        // This is how you populate the data.
-        Log.d(TAG,"Setting Remote Adapter");
-        views.setRemoteAdapter(R.id.lv_ingredients,intent);
+        //just save the recipe as a shared preference as serialized JSON
+        Gson gson = new Gson();
+        String serializedRecipe = gson.toJson(recipe);
+        SharedPreferences sharedPreferences = this.getApplicationContext().getSharedPreferences(getString(R.string.name_sp_widget),0);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(String.valueOf(mAppWidgetId),serializedRecipe);
+        editor.commit();
 
-        appWidgetManager.updateAppWidget(mAppWidgetId,views);
+        Intent i = new Intent(this, RecipeStepsWidget.class);
+        i.putExtra(getString(R.string.key_widget_id),mAppWidgetId);
+        i.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+        this.sendBroadcast(i);
+        /* Set success of widget configuration activity*/
         Intent resultValue = new Intent();
         resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, mAppWidgetId);
         setResult(RESULT_OK, resultValue);
         finish();
-        Log.d(TAG,"Finished Activity" );
     }
 
     private void fetchRecipes() {
@@ -136,6 +115,7 @@ public class RecipeStepsWidgetConfigureActivity extends AppCompatActivity implem
             @Override
             public void onResponse(Call<ArrayList<Recipe>> call, Response<ArrayList<Recipe>> response) {
                 recipeAdapter.setRecipes(response.body());
+                Log.d(TAG, response.body().toString());
                 recipeAdapter.setLoading(false);
             }
             @Override

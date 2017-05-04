@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
 import android.support.v7.app.ActionBar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -76,7 +77,6 @@ public class StepListActivity extends AppCompatActivity implements IngredientSte
         if(savedInstanceState!=null) {
             rvIngredientStep.getLayoutManager().onRestoreInstanceState(savedInstanceState.getParcelable(getString(R.string.key_rv_lo_state)));
             ((IngredientStepAdapter)rvIngredientStep.getAdapter()).selectedPosition = savedInstanceState.getInt(getString(R.string.key_current_position));
-
         }
 
     }

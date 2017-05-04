@@ -3,9 +3,14 @@ package app.baking_app;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
+import android.widget.Toast;
+
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +26,7 @@ public class ListWidgetService extends RemoteViewsService {
     private static final String TAG = ListWidgetService.class.getSimpleName();
     @Override
     public RemoteViewsFactory onGetViewFactory(Intent intent) {
-        Log.d(TAG, "Inside Service Constructor");
+        Log.d(TAG, "Inside Service onGetViewFactory");
         return new ListRemoteViewsFactory(this.getApplicationContext(), intent);
     }
 
@@ -31,7 +36,7 @@ public class ListWidgetService extends RemoteViewsService {
 
     public static class ListRemoteViewsFactory implements RemoteViewsFactory {
 
-        //private Recipe mRecipe;
+        private Recipe mRecipe;
         private int mAppWidgetId;
         private Context context;
         private Intent intent;
@@ -40,7 +45,6 @@ public class ListWidgetService extends RemoteViewsService {
         public ListRemoteViewsFactory(Context context, Intent intent) {
             this.context = context;
             mAppWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,AppWidgetManager.INVALID_APPWIDGET_ID);
-            //mRecipe = intent.getParcelableExtra("key_recipe");
         }
 
 
@@ -69,24 +73,21 @@ public class ListWidgetService extends RemoteViewsService {
 
         @Override
         public void onCreate() {
-            for(int i=0;i<10;i++)
-                strings.add("String "+i);
+            Gson gson = new Gson();
+            SharedPreferences sharedPreferences = context.getSharedPreferences(context.getString(R.string.name_sp_widget),0);
+            mRecipe =  gson.fromJson(sharedPreferences.getString(String.valueOf(mAppWidgetId),null),Recipe.class);
         }
 
         @Override
         public int getCount() {
-            return strings.size();
-            // mRecipe.getIngredients().size();
+            return mRecipe.getIngredients().size();
         }
 
         @Override
         public RemoteViews getViewAt(int position){
-            //Ingredient ingredient = mRecipe.getIngredients().get(position);
-
+            Ingredient ingredient = mRecipe.getIngredients().get(position);
             RemoteViews rv = new RemoteViews(context.getPackageName(), R.layout.item_widget_ingredient);
-            //rv.setTextViewText(R.id.tv_ingredient_details, ingredient.toString());
-            rv.setTextViewText(R.id.tv_ingredient_details, strings.get(position));
-            // Return the RemoteViews object.
+            rv.setTextViewText(R.id.tv_ingredient_details, ingredient.toString());
             return rv;
         }
 

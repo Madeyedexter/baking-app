@@ -6,12 +6,13 @@
     android:padding="@dimen/widget_margin">
 
     <ImageView
-        android:id="@+id/appwidget_default_image"
-        android:layout_width="@dimen/widget_min_dimen"
-        android:layout_height="@dimen/widget_min_dimen"
+        android:id="@+id/iv_appwidget"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
         android:layout_centerHorizontal="true"
         android:contentDescription="@string/appwidget_recipe_text"
         android:src="@drawable/ingredients_colored_512"
+        android:scaleType="fitCenter"
         android:layout_marginLeft="@dimen/padding_margin_8dp"
         android:layout_marginRight="@dimen/padding_margin_8dp"
         android:layout_marginTop="8dp"
@@ -21,14 +22,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/padding_margin_8dp"
+        android:clickable="true"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
         android:text="@string/appwidget_ingredient_text_label"/>
     <ListView
         android:id="@+id/lv_ingredients"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="@dimen/padding_margin_8dp"
-        android:layout_marginRight="@dimen/padding_margin_8dp"
         tools:text="@string/appwidget_recipe_text"
         tools:listitem="@layout/item_widget_ingredient"/>
 

@@ -10,8 +10,23 @@ import java.util.ArrayList;
  */
 
 public class Recipe implements Parcelable{
+    public static final Creator<Recipe> CREATOR = new Creator<Recipe>() {
+        @Override
+        public Recipe createFromParcel(Parcel in) {
+            return new Recipe(in);
+        }
+
+        @Override
+        public Recipe[] newArray(int size) {
+            return new Recipe[size];
+        }
+    };
     private String id;
     private String name;
+    private ArrayList<Ingredient> ingredients;
+    private ArrayList<Step> steps;
+    private int servings;
+    private String image;
 
     public Recipe() {
     }
@@ -39,18 +54,6 @@ public class Recipe implements Parcelable{
     public int describeContents() {
         return 0;
     }
-
-    public static final Creator<Recipe> CREATOR = new Creator<Recipe>() {
-        @Override
-        public Recipe createFromParcel(Parcel in) {
-            return new Recipe(in);
-        }
-
-        @Override
-        public Recipe[] newArray(int size) {
-            return new Recipe[size];
-        }
-    };
 
     @Override
     public String toString() {
@@ -112,9 +115,4 @@ public class Recipe implements Parcelable{
     public void setImage(String image) {
         this.image = image;
     }
-
-    private ArrayList<Ingredient> ingredients;
-    private ArrayList<Step> steps;
-    private int servings;
-    private String image;
 }
