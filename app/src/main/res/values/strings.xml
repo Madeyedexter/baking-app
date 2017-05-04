@@ -22,4 +22,5 @@
     <string name="appwidget_ingredient_text_label">Showing Ingredients for: %1$s</string>
     <string name="name_sp_widget">sp_widget</string>
     <string name="key_widget_id">widget_id</string>
+    <string name="label_ingredients_list">Get ready with the following ingredients for %1$s</string>
 </resources>

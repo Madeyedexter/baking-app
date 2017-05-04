@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -27,14 +28,19 @@ import butterknife.ButterKnife;
 public class IngredientsDetailFragment extends Fragment implements View.OnClickListener{
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_INGREDIENTS_LIST = "param1";
+    private static final String ARG_RECIPE_NAME = "param2";
 
     private ArrayList<Ingredient> ingredients;
+    private String recipeName;
 
     @BindView(R.id.rv_ingredients)
     RecyclerView recyclerViewIngredients;
 
     @BindView(R.id.fab_right)
     FloatingActionButton fabNext;
+
+    @BindView(R.id.tv_ingredients_label)
+    TextView tvIngredientsLabel;
 
     public FabClickListener getFabClickListener() {
         return fabClickListener;
@@ -59,10 +65,11 @@ public class IngredientsDetailFragment extends Fragment implements View.OnClickL
      * @param ingredients The list of ingredients for this recipe
      * @return A new instance of fragment IngredientsDetailFragment.
      */
-    public static IngredientsDetailFragment newInstance(ArrayList<Ingredient> ingredients) {
+    public static IngredientsDetailFragment newInstance(ArrayList<Ingredient> ingredients, String recipeName) {
         IngredientsDetailFragment fragment = new IngredientsDetailFragment();
         Bundle args = new Bundle();
         args.putParcelableArrayList(ARG_INGREDIENTS_LIST, ingredients);
+        args.putString(ARG_RECIPE_NAME, recipeName);
         fragment.setArguments(args);
         return fragment;
     }
@@ -72,6 +79,7 @@ public class IngredientsDetailFragment extends Fragment implements View.OnClickL
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             this.ingredients = getArguments().getParcelableArrayList(ARG_INGREDIENTS_LIST);
+            this.recipeName = getArguments().getString(ARG_RECIPE_NAME);
         }
     }
 
@@ -83,6 +91,7 @@ public class IngredientsDetailFragment extends Fragment implements View.OnClickL
         rootView =inflater.inflate(R.layout.fragment_ingredients_detail, container, false);
         ButterKnife.bind(this,rootView);
 
+        tvIngredientsLabel.setText(String.format(getString(R.string.label_ingredients_list),recipeName));
         setupRecyclerViewIngredients();
         fabNext.setOnClickListener(this);
 

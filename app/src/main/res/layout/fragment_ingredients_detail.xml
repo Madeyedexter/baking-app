@@ -10,13 +10,22 @@
         android:orientation="vertical"
         android:clipToPadding="false"
         >
+        <TextView
+            android:id="@+id/tv_ingredients_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/label_ingredients_list"
+            android:layout_marginTop="@dimen/margin_detail_views"
+            android:layout_marginLeft="@dimen/margin_detail_views"
+            android:layout_marginRight="@dimen/margin_detail_views"
+            android:layout_marginBottom="@dimen/text_margin"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"/>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_ingredients"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_detail_views"
         android:layout_marginRight="@dimen/margin_detail_views"
-        android:layout_marginTop="@dimen/margin_detail_views"
         app:layoutManager="LinearLayoutManager"
         android:nestedScrollingEnabled="false"
         android:elevation="1dp"

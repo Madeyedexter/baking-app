@@ -69,7 +69,7 @@ public class IngredientStepDetailActivity extends AppCompatActivity implements F
         Fragment fragment = null;
         if(currentPosition == 0){
             // we need to create a IngredientDetailFragment
-            fragment = IngredientsDetailFragment.newInstance(recipe.getIngredients());
+            fragment = IngredientsDetailFragment.newInstance(recipe.getIngredients(), recipe.getName());
         }
         else{
             fragment = StepDetailFragment.newInstance(recipe.getSteps().get(currentPosition-1), recipe.getSteps().size()==currentPosition);
